@@ -3,6 +3,8 @@
     "description": "Amazon Pay API SDK (PHP) for Laravel",
     "type": "library",
     "keywords": ["amazon pay", "laravel"],
+    "homepage": "https://github.com/sunaoka/amazon-pay-api-sdk-php-laravel",
+    "license": "Apache-2.0",
     "authors": [
         {
             "name": "sunaoka",
@@ -27,6 +29,13 @@
             "Tests\\": "tests/"
         }
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "preferred-install": "dist",
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
     "extra": {
         "branch-alias": {
             "dev-main": "1.x-dev"
@@ -39,12 +48,5 @@
                 "AmazonPay": "Sunaoka\\AmazonPay\\Laravel\\Facade\\AmazonPay"
             }
         }
-    },
-    "config": {
-        "optimize-autoloader": true,
-        "preferred-install": "dist",
-        "sort-packages": true
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    }
 }
