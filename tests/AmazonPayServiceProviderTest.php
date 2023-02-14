@@ -11,4 +11,10 @@ class AmazonPayServiceProviderTest extends TestCase
         $actual = \AmazonPay::__get('sandbox');
         self::assertTrue($actual);
     }
+
+    public function testGetAmazonPayScript(): void
+    {
+        $actual = \AmazonPay::getAmazonPayScript();
+        self::assertSame('https://static-na.payments-amazon.com/checkout.js', $actual);
+    }
 }

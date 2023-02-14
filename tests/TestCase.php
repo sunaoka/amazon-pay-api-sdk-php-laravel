@@ -36,7 +36,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
     {
         $app['config']->set('amazon-pay', [
             'sandbox' => true,
-            'region'  => 'na',
+            'region'  => 'us',
         ]);
     }
 }
