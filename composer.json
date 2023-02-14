@@ -36,7 +36,7 @@
                 "Sunaoka\\AmazonPay\\Laravel\\Provider\\AmazonPayServiceProvider"
             ],
             "aliases": {
-                "AmazonPay": "Suanaoka\\AmazonPay\\Laravel\\Facade\\AmazonPay"
+                "AmazonPay": "Sunaoka\\AmazonPay\\Laravel\\Facade\\AmazonPay"
             }
         }
     },
