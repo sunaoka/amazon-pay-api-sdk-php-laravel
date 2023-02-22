@@ -68,7 +68,7 @@ class Client extends \Amazon\Pay\API\Client
             return $response;
         }
 
-        return parent::apiCall($method, $urlFragment, $payload, $headers, $queryParams);
+        return parent::apiCall($method, $urlFragment, $payload, $headers, $queryParams);  // @codeCoverageIgnore
     }
 
     /**
