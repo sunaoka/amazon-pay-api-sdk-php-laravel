@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Tests;
 
+use function PHPUnit\Framework\assertSame;
+
 class AmazonPayServiceProviderTest extends TestCase
 {
     public function testFacade(): void
@@ -16,5 +18,50 @@ class AmazonPayServiceProviderTest extends TestCase
     {
         $actual = \AmazonPay::getAmazonPayScript();
         self::assertSame('https://static-na.payments-amazon.com/checkout.js', $actual);
+    }
+
+    public function testFake(): void
+    {
+        $fakeResponse = [
+            'refundId'           => 'S01-5105180-3221187-R022311',
+            'chargeId'           => 'S01-5105180-3221187-C056351',
+            'refundAmount'       => [
+                'amount'       => '14.00',
+                'currencyCode' => 'USD'
+            ],
+            'softDescriptor'     => 'Descriptor',
+            'creationTimestamp'  => '20190714T155300Z',
+            'statusDetails'      => [
+                'state'                => 'RefundInitiated',
+                'reasonCode'           => null,
+                'reasonDescription'    => null,
+                'lastUpdatedTimestamp' => '20190714T155300Z'
+            ],
+            'releaseEnvironment' => 'Sandbox',
+        ];
+
+        \AmazonPay::fake($fakeResponse);
+
+        $payload = [
+            'chargeId'       => 'S01-5105180-3221187-C056351',
+            'refundAmount'   => [
+                'amount'       => '14.00',
+                'currencyCode' => 'USD',
+            ],
+            'softDescriptor' => 'Descriptor',
+        ];
+
+        $actual = \AmazonPay::createRefund($payload, []);
+        $response = json_decode($actual['response'], true);
+
+        assertSame($fakeResponse['refundId'], $response['refundId']);
+
+
+        \AmazonPay::fake($fakeResponse);
+
+        $actual = \AmazonPay::getRefund('S01-5105180-3221187-R022311');
+        $response = json_decode($actual['response'], true);
+
+        assertSame($fakeResponse['refundId'], $response['refundId']);
     }
 }
