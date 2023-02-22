@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Sunaoka\AmazonPay\Laravel\Facade;
 
-use Amazon\Pay\API\Client;
 use Illuminate\Support\Facades\Facade;
-use Throwable;
+use Sunaoka\AmazonPay\Laravel\Client;
 
 /**
  * @method static \Mockery\MockInterface spy() Convert the facade into a Mockery spy.
@@ -28,23 +27,5 @@ class AmazonPay extends Facade
     protected static function getFacadeAccessor(): string
     {
         return 'AmazonPay';
-    }
-
-    /**
-     * Get Amazon Pay script URL
-     *
-     * @return string
-     *
-     * @throws Throwable
-     */
-    public static function getAmazonPayScript(): string
-    {
-        $scripts = [
-            'na' => 'https://static-na.payments-amazon.com/checkout.js',
-            'eu' => 'https://static-eu.payments-amazon.com/checkout.js',
-            'jp' => 'https://static-fe.payments-amazon.com/checkout.js',
-        ];
-
-        return $scripts[static::__get('region')];
     }
 }

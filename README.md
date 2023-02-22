@@ -23,6 +23,31 @@ composer require sunaoka/amazon-pay-api-sdk-php-laravel
 php artisan vendor:publish --tag=amazon-pay-config
 ```
 
+The settings can be found in the generated `config/amazon-pay.php` configuration file.
+
+```php
+<?php
+
+return [
+    'sandbox'              => (bool)env('AMAZON_PAY_SANDBOX', 'true'),
+    'merchant_id'          => env('AMAZON_PAY_MERCHANT_ID'),
+    'store_id'             => env('AMAZON_PAY_STORE_ID'),
+    'public_key_id'        => env('AMAZON_PAY_PUBLIC_KEY_ID'),
+    'private_key'          => env('AMAZON_PAY_PRIVATE_KEY'),
+    'region'               => env('AMAZON_PAY_REGION'),
+    'language'             => env('AMAZON_PAY_LANGUAGE'),
+    'currency_code'        => env('AMAZON_PAY_CURRENCY_CODE'),
+    'algorithm'            => env('AMAZON_PAY_ALGORITHM'),
+    'override_service_url' => env('AMAZON_PAY_OVERRIDE_SERVICE_URL'),
+    'proxy'                => [
+        'host'     => env('AMAZON_PAY_PROXY_HOST'),
+        'port'     => env('AMAZON_PAY_PROXY_PORT'),
+        'username' => env('AMAZON_PAY_PROXY_USERNAME'),
+        'password' => env('AMAZON_PAY_PROXY_PASSWORD'),
+    ],
+];
+```
+
 ## Usage
 
 ```dotenv
@@ -50,4 +75,44 @@ $payload = [
 ];
 
 $signature = \AmazonPay::generateButtonSignature($payload);
+```
+
+## Testing
+
+You may use the `AmazonPay` facade's `fake` method to apply the mock response.
+
+```php
+<?php
+
+\AmazonPay::fake([
+    'refundId'           => 'S01-5105180-3221187-R022311',
+    'chargeId'           => 'S01-5105180-3221187-C056351',
+    'refundAmount'       => [
+        'amount'       => '14.00',
+        'currencyCode' => 'USD'
+    ],
+    'softDescriptor'     => 'Descriptor',
+    'creationTimestamp'  => '20190714T155300Z',
+    'statusDetails'      => [
+        'state'                => 'RefundInitiated',
+        'reasonCode'           => null,
+        'reasonDescription'    => null,
+        'lastUpdatedTimestamp' => '20190714T155300Z'
+    ],
+    'releaseEnvironment' => 'Sandbox',
+]);
+
+$payload = [
+    'chargeId'       => 'S01-5105180-3221187-C056351',
+    'refundAmount'   => [
+        'amount'       => '14.00',
+        'currencyCode' => 'USD',
+    ],
+    'softDescriptor' => 'Descriptor',
+];
+
+$response = \AmazonPay::createRefund($payload, []);
+$result = json_decode($response['response'], true);
+
+echo $result['refundId']; // S01-5105180-3221187-R022311
 ```

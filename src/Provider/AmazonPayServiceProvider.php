@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Sunaoka\AmazonPay\Laravel\Provider;
 
-use Amazon\Pay\API\Client;
 use Illuminate\Support\ServiceProvider;
+use Sunaoka\AmazonPay\Laravel\Client;
 
 class AmazonPayServiceProvider extends ServiceProvider
 {
