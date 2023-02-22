@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use function PHPUnit\Framework\assertSame;
-
 class AmazonPayServiceProviderTest extends TestCase
 {
     public function testFacade(): void
@@ -54,7 +52,7 @@ class AmazonPayServiceProviderTest extends TestCase
         $actual = \AmazonPay::createRefund($payload, []);
         $response = json_decode($actual['response'], true);
 
-        assertSame($fakeResponse['refundId'], $response['refundId']);
+        self::assertSame($fakeResponse['refundId'], $response['refundId']);
 
 
         \AmazonPay::fake($fakeResponse);
@@ -62,6 +60,6 @@ class AmazonPayServiceProviderTest extends TestCase
         $actual = \AmazonPay::getRefund('S01-5105180-3221187-R022311');
         $response = json_decode($actual['response'], true);
 
-        assertSame($fakeResponse['refundId'], $response['refundId']);
+        self::assertSame($fakeResponse['refundId'], $response['refundId']);
     }
 }
