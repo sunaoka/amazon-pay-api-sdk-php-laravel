@@ -11,10 +11,10 @@ return [
     'currency_code'        => env('AMAZON_PAY_CURRENCY_CODE'),
     'algorithm'            => env('AMAZON_PAY_ALGORITHM'),
     'override_service_url' => env('AMAZON_PAY_OVERRIDE_SERVICE_URL'),
-    'proxy'                => [
+    'proxy'                => !empty(env('AMAZON_PAY_PROXY_HOST')) ? [
         'host'     => env('AMAZON_PAY_PROXY_HOST'),
         'port'     => env('AMAZON_PAY_PROXY_PORT'),
         'username' => env('AMAZON_PAY_PROXY_USERNAME'),
         'password' => env('AMAZON_PAY_PROXY_PASSWORD'),
-    ],
+    ] : null,
 ];
