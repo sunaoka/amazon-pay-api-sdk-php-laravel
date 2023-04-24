@@ -6,6 +6,7 @@ namespace Sunaoka\AmazonPay\Laravel;
 
 use Exception;
 use Illuminate\Support\Str;
+use LogicException;
 
 class Client extends \Amazon\Pay\API\Client
 {
@@ -18,6 +19,44 @@ class Client extends \Amazon\Pay\API\Client
      * @var int
      */
     protected $fakeStatus = 200;
+
+    /**
+     * @var string[]
+     */
+    protected $availableRegions = [
+        'eu',
+        'de',
+        'uk',
+        'us',
+        'na',
+        'jp',
+    ];
+
+    /**
+     * @param array|null $config
+     *
+     * @throws Exception
+     */
+    public function __construct($config = null)
+    {
+        if (empty($config['public_key_id'])) {
+            throw new LogicException('The "public_key_id" is required');
+        }
+
+        if (empty($config['private_key'])) {
+            throw new LogicException('The "private_key" is required');
+        }
+
+        if (empty($config['region'])) {
+            throw new LogicException('The "region" is required');
+        }
+
+        if (!in_array(strtolower($config['region']), $this->availableRegions, true)) {
+            throw new LogicException("{$config['region']} is not a valid region");
+        }
+
+        parent::__construct($config);
+    }
 
     /**
      * Get Amazon Pay script URL

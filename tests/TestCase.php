@@ -35,8 +35,10 @@ class TestCase extends \Orchestra\Testbench\TestCase
     protected function defineEnvironment($app): void
     {
         $app['config']->set('amazon-pay', [
-            'sandbox' => true,
-            'region'  => 'us',
+            'public_key_id' => 'public_key_id',
+            'private_key'   => 'private_key',
+            'sandbox'       => true,
+            'region'        => 'us',
         ]);
     }
 }
