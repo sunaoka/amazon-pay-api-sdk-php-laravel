@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'sandbox'              => (bool)env('AMAZON_PAY_SANDBOX', 'true'),
+    'sandbox'              => (bool)env('AMAZON_PAY_SANDBOX', true),
     'merchant_id'          => env('AMAZON_PAY_MERCHANT_ID'),
     'store_id'             => env('AMAZON_PAY_STORE_ID'),
     'public_key_id'        => env('AMAZON_PAY_PUBLIC_KEY_ID'),
