@@ -50,6 +50,8 @@ class AmazonPayServiceProviderTest extends TestCase
         ];
 
         $actual = \AmazonPay::createRefund($payload, []);
+
+        /** @var array{refundId: string} $response */
         $response = json_decode($actual['response'], true);
 
         self::assertSame($fakeResponse['refundId'], $response['refundId']);
@@ -58,6 +60,8 @@ class AmazonPayServiceProviderTest extends TestCase
         \AmazonPay::fake($fakeResponse);
 
         $actual = \AmazonPay::getRefund('S01-5105180-3221187-R022311');
+
+        /** @var array{refundId: string} $response */
         $response = json_decode($actual['response'], true);
 
         self::assertSame($fakeResponse['refundId'], $response['refundId']);

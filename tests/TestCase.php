@@ -10,7 +10,11 @@ use Sunaoka\AmazonPay\Laravel\Provider\AmazonPayServiceProvider;
 class TestCase extends \Orchestra\Testbench\TestCase
 {
     /**
-     * @inerhitDoc
+     * Get package providers.
+     *
+     * @param  \Illuminate\Foundation\Application  $app
+     *
+     * @return array<int, class-string<\Illuminate\Support\ServiceProvider>>
      */
     protected function getPackageProviders($app): array
     {
@@ -20,7 +24,11 @@ class TestCase extends \Orchestra\Testbench\TestCase
     }
 
     /**
-     * @inerhitDoc
+     * Get package aliases.
+     *
+     * @param  \Illuminate\Foundation\Application  $app
+     *
+     * @return array<string, class-string<\Illuminate\Support\Facades\Facade>>
      */
     protected function getPackageAliases($app): array
     {
@@ -30,7 +38,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
     }
 
     /**
-     * @inerhitDoc
+     * @param \Illuminate\Foundation\Application|array{config: \Illuminate\Config\Repository} $app
      */
     protected function defineEnvironment($app): void
     {
