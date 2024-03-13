@@ -21,19 +21,19 @@ class AmazonPayServiceProviderTest extends TestCase
     public function testFake(): void
     {
         $fakeResponse = [
-            'refundId'           => 'S01-5105180-3221187-R022311',
-            'chargeId'           => 'S01-5105180-3221187-C056351',
-            'refundAmount'       => [
-                'amount'       => '14.00',
-                'currencyCode' => 'USD'
+            'refundId' => 'S01-5105180-3221187-R022311',
+            'chargeId' => 'S01-5105180-3221187-C056351',
+            'refundAmount' => [
+                'amount' => '14.00',
+                'currencyCode' => 'USD',
             ],
-            'softDescriptor'     => 'Descriptor',
-            'creationTimestamp'  => '20190714T155300Z',
-            'statusDetails'      => [
-                'state'                => 'RefundInitiated',
-                'reasonCode'           => null,
-                'reasonDescription'    => null,
-                'lastUpdatedTimestamp' => '20190714T155300Z'
+            'softDescriptor' => 'Descriptor',
+            'creationTimestamp' => '20190714T155300Z',
+            'statusDetails' => [
+                'state' => 'RefundInitiated',
+                'reasonCode' => null,
+                'reasonDescription' => null,
+                'lastUpdatedTimestamp' => '20190714T155300Z',
             ],
             'releaseEnvironment' => 'Sandbox',
         ];
@@ -41,9 +41,9 @@ class AmazonPayServiceProviderTest extends TestCase
         \AmazonPay::fake($fakeResponse);
 
         $payload = [
-            'chargeId'       => 'S01-5105180-3221187-C056351',
-            'refundAmount'   => [
-                'amount'       => '14.00',
+            'chargeId' => 'S01-5105180-3221187-C056351',
+            'refundAmount' => [
+                'amount' => '14.00',
                 'currencyCode' => 'USD',
             ],
             'softDescriptor' => 'Descriptor',
@@ -55,7 +55,6 @@ class AmazonPayServiceProviderTest extends TestCase
         $response = json_decode($actual['response'], true);
 
         self::assertSame($fakeResponse['refundId'], $response['refundId']);
-
 
         \AmazonPay::fake($fakeResponse);
 
