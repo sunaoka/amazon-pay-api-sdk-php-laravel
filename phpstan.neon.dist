@@ -1,8 +1,16 @@
 parameters:
 
+    bootstrapFiles:
+        - .phpstan/classAliases.php
+
     level: 9
 
     checkMissingIterableValueType: false
 
+    editorUrl: 'file://%%file%%:%%line%%'
+
+    editorUrlTitle: 'file://%%file%%:%%line%%'
+
     paths:
         - src/
+        - tests/

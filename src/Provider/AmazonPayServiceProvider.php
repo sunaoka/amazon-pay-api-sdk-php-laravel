@@ -15,12 +15,13 @@ class AmazonPayServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(
-            dirname(__DIR__, 2) . '/config/amazon-pay.php',
+            dirname(__DIR__, 2).'/config/amazon-pay.php',
             'amazon-pay'
         );
 
         $this->app->singleton('AmazonPay', function ($app) {
             $config = $app->make('config')->get('amazon-pay');
+
             return new Client($config);
         });
 
@@ -34,7 +35,7 @@ class AmazonPayServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes(
-                [dirname(__DIR__, 2) . '/config/amazon-pay.php' => $this->app->configPath('amazon-pay.php')],
+                [dirname(__DIR__, 2).'/config/amazon-pay.php' => $this->app->configPath('amazon-pay.php')],
                 'amazon-pay-config'
             );
         }

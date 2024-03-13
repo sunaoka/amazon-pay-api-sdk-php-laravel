@@ -33,7 +33,7 @@ class Client extends \Amazon\Pay\API\Client
     ];
 
     /**
-     * @param array|null $config
+     * @param  array|null  $config
      *
      * @throws Exception
      */
@@ -51,7 +51,7 @@ class Client extends \Amazon\Pay\API\Client
             throw new LogicException('The "region" is required');
         }
 
-        if (!in_array(strtolower($config['region']), $this->availableRegions, true)) {
+        if (! in_array(strtolower($config['region']), $this->availableRegions, true)) {
             throw new LogicException("{$config['region']} is not a valid region");
         }
 
@@ -60,8 +60,6 @@ class Client extends \Amazon\Pay\API\Client
 
     /**
      * Get Amazon Pay script URL
-     *
-     * @return string
      *
      * @throws Exception
      */
@@ -77,13 +75,11 @@ class Client extends \Amazon\Pay\API\Client
     }
 
     /**
-     * @param string       $method
-     * @param string       $urlFragment
-     * @param string|array $payload
-     * @param array|null   $headers
-     * @param array|null   $queryParams
-     *
-     * @return array
+     * @param  string  $method
+     * @param  string  $urlFragment
+     * @param  string|array  $payload
+     * @param  array|null  $headers
+     * @param  array|null  $queryParams
      *
      * @throws Exception
      */
@@ -91,15 +87,15 @@ class Client extends \Amazon\Pay\API\Client
     {
         if ($this->fakeResponse !== null) {
             $response = [
-                'status'     => $this->fakeStatus,
-                'method'     => $method,
-                'url'        => $urlFragment,
-                'headers'    => $headers ?? [],
-                'request'    => is_array($payload) ? json_encode($payload) : $payload,
-                'response'   => json_encode($this->fakeResponse),
+                'status' => $this->fakeStatus,
+                'method' => $method,
+                'url' => $urlFragment,
+                'headers' => $headers ?? [],
+                'request' => is_array($payload) ? json_encode($payload) : $payload,
+                'response' => json_encode($this->fakeResponse),
                 'request_id' => Str::uuid()->toString(),
-                'retries'    => 0,
-                'duration'   => 0,
+                'retries' => 0,
+                'duration' => 0,
             ];
 
             $this->fakeResponse = null;
@@ -110,13 +106,7 @@ class Client extends \Amazon\Pay\API\Client
         return parent::apiCall($method, $urlFragment, $payload, $headers, $queryParams);  // @codeCoverageIgnore
     }
 
-    /**
-     * @param array|null $response
-     * @param int        $status
-     *
-     * @return void
-     */
-    public function fake(array $response = null, int $status = 200): void
+    public function fake(?array $response = null, int $status = 200): void
     {
         $this->fakeResponse = $response;
         $this->fakeStatus = $status;
