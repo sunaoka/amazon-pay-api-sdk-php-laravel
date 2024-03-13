@@ -3,7 +3,7 @@
 [![Latest Stable Version](https://poser.pugx.org/sunaoka/amazon-pay-api-sdk-php-laravel/v/stable)](https://packagist.org/packages/sunaoka/amazon-pay-api-sdk-php-laravel)
 [![License](https://poser.pugx.org/sunaoka/amazon-pay-api-sdk-php-laravel/license)](https://packagist.org/packages/sunaoka/amazon-pay-api-sdk-php-laravel)
 [![PHP from Packagist](https://img.shields.io/packagist/php-v/sunaoka/amazon-pay-api-sdk-php-laravel)](composer.json)
-[![Laravel](https://img.shields.io/badge/laravel-6.x%20%7C%207.x%20%7C%208.x%20%7C%209.x%20%7C%2010.x-red)](https://laravel.com/)
+[![Laravel](https://img.shields.io/badge/laravel-%3E=%206.x-red)](https://laravel.com/)
 [![Test](https://github.com/sunaoka/amazon-pay-api-sdk-php-laravel/actions/workflows/test.yml/badge.svg)](https://github.com/sunaoka/amazon-pay-api-sdk-php-laravel/actions/workflows/test.yml)
 [![codecov](https://codecov.io/gh/sunaoka/amazon-pay-api-sdk-php-laravel/branch/main/graph/badge.svg?token=B69XU9TMMH)](https://codecov.io/gh/sunaoka/amazon-pay-api-sdk-php-laravel)
 
