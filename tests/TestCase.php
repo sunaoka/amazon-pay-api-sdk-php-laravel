@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests;
 
+use Illuminate\Contracts\Config\Repository;
 use Sunaoka\AmazonPay\Laravel\Facade\AmazonPay;
 use Sunaoka\AmazonPay\Laravel\Provider\AmazonPayServiceProvider;
 
@@ -40,11 +41,13 @@ class TestCase extends \Orchestra\Testbench\TestCase
      */
     protected function defineEnvironment($app): void
     {
-        $app['config']->set('amazon-pay', [
-            'public_key_id' => 'public_key_id',
-            'private_key' => 'private_key',
-            'sandbox' => true,
-            'region' => 'us',
-        ]);
+        tap($app['config'], function (Repository $config) {
+            $config->set('amazon-pay', [
+                'public_key_id' => 'public_key_id',
+                'private_key' => 'private_key',
+                'sandbox' => true,
+                'region' => 'us',
+            ]);
+        });
     }
 }

@@ -6,12 +6,18 @@ namespace Tests;
 
 class AmazonPayServiceProviderTest extends TestCase
 {
+    /**
+     * @throws \Exception
+     */
     public function testFacade(): void
     {
         $actual = \AmazonPay::__get('sandbox');
         self::assertTrue($actual);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function testGetAmazonPayScript(): void
     {
         $actual = \AmazonPay::getAmazonPayScript();
