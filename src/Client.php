@@ -4,16 +4,14 @@ declare(strict_types=1);
 
 namespace Sunaoka\AmazonPay\Laravel;
 
-use Exception;
 use Illuminate\Support\Str;
-use LogicException;
 
 class Client extends \Amazon\Pay\API\Client
 {
     /**
      * @var array|null
      */
-    protected $fakeResponse = null;
+    protected $fakeResponse;
 
     /**
      * @var int
@@ -35,24 +33,24 @@ class Client extends \Amazon\Pay\API\Client
     /**
      * @param  array|null  $config
      *
-     * @throws Exception
+     * @throws \Exception
      */
     public function __construct($config = null)
     {
         if (empty($config['public_key_id'])) {
-            throw new LogicException('The "public_key_id" is required');
+            throw new \LogicException('The "public_key_id" is required');
         }
 
         if (empty($config['private_key'])) {
-            throw new LogicException('The "private_key" is required');
+            throw new \LogicException('The "private_key" is required');
         }
 
         if (empty($config['region'])) {
-            throw new LogicException('The "region" is required');
+            throw new \LogicException('The "region" is required');
         }
 
         if (! in_array(strtolower($config['region']), $this->availableRegions, true)) {
-            throw new LogicException("{$config['region']} is not a valid region");
+            throw new \LogicException("{$config['region']} is not a valid region");
         }
 
         parent::__construct($config);
@@ -61,7 +59,7 @@ class Client extends \Amazon\Pay\API\Client
     /**
      * Get Amazon Pay script URL
      *
-     * @throws Exception
+     * @throws \Exception
      */
     public function getAmazonPayScript(): string
     {
@@ -81,7 +79,7 @@ class Client extends \Amazon\Pay\API\Client
      * @param  array|null  $headers
      * @param  array|null  $queryParams
      *
-     * @throws Exception
+     * @throws \Exception
      */
     public function apiCall($method, $urlFragment, $payload, $headers = null, $queryParams = null): array
     {
