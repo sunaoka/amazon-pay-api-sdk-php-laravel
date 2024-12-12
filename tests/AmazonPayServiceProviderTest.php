@@ -9,7 +9,7 @@ class AmazonPayServiceProviderTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testFacade(): void
+    public function test_facade(): void
     {
         $actual = \AmazonPay::__get('sandbox');
         self::assertTrue($actual);
@@ -18,13 +18,13 @@ class AmazonPayServiceProviderTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testGetAmazonPayScript(): void
+    public function test_get_amazon_pay_script(): void
     {
         $actual = \AmazonPay::getAmazonPayScript();
         self::assertSame('https://static-na.payments-amazon.com/checkout.js', $actual);
     }
 
-    public function testFake(): void
+    public function test_fake(): void
     {
         $fakeResponse = [
             'refundId' => 'S01-5105180-3221187-R022311',

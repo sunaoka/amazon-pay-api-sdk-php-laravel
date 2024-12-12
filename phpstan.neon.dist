@@ -1,11 +1,12 @@
+includes:
+    - ./vendor/phpstan/phpstan/conf/bleedingEdge.neon
+
 parameters:
 
     bootstrapFiles:
         - .phpstan/classAliases.php
 
     level: 9
-
-    checkMissingIterableValueType: false
 
     editorUrl: 'file://%%file%%:%%line%%'
 
@@ -14,3 +15,6 @@ parameters:
     paths:
         - src/
         - tests/
+
+    ignoreErrors:
+        - identifier: missingType.iterableValue
