@@ -11,7 +11,7 @@ class ClientTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testPublicKeyIdRequired(): void
+    public function test_public_key_id_required(): void
     {
         $this->expectException(\LogicException::class);
 
@@ -21,7 +21,7 @@ class ClientTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testPrivateKeyRequired(): void
+    public function test_private_key_required(): void
     {
         $this->expectException(\LogicException::class);
 
@@ -31,7 +31,7 @@ class ClientTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testRegionRequired(): void
+    public function test_region_required(): void
     {
         $this->expectException(\LogicException::class);
 
@@ -41,7 +41,7 @@ class ClientTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testRegionInvalid(): void
+    public function test_region_invalid(): void
     {
         $this->expectException(\LogicException::class);
 
